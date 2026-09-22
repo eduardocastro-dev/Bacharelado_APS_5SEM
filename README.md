@@ -1,62 +1,103 @@
-## TCPServidor e TCPCliente: Compartilhamento de Arquivos via TCP
+# 📡 TCPServidor e TCPCliente: Compartilhamento de Arquivos via TCP
 
-Este repositório contém uma aplicação C# que implementa um servidor e um cliente TCP para comunicação e compartilhamento de arquivos entre múltiplos clientes. 
+Aplicação em **C#** que implementa um servidor e um cliente **TCP** para comunicação em tempo real e compartilhamento de imagens entre múltiplos clientes conectados simultaneamente.
 
-**Funcionalidades:**
+## 📑 Sumário
 
-* **Servidor:**
-    * Iniciar e parar a escuta por conexões de clientes.
-    * Aceitar novas conexões de clientes.
-    * Gerenciar clientes conectados (armazenar informações como nome, cor de exibição e socket).
-    * Receber e processar mensagens de texto e arquivos de clientes, reenviando para os outros clientes.
-    * Enviar mensagens de texto para todos os clientes conectados.
-    * Compartilhar imagens: receber imagens de clientes e replicar para outros clientes.
-* **Cliente:**
-    * Conectar a um servidor TCP.
-    * Enviar nome e cor de exibição.
-    * Enviar mensagens de texto para o servidor.
-    * Compartilhar imagens com o servidor.
-    * Receber mensagens de texto do servidor.
-    * Receber imagens do servidor e salvá-las em uma pasta local.
-    * Desconectar do servidor.
+- [Sobre o projeto](#-sobre-o-projeto)
+- [Funcionalidades](#-funcionalidades)
+- [Arquitetura](#-arquitetura)
+- [Tecnologias utilizadas](#-tecnologias-utilizadas)
+- [Pré-requisitos](#-pré-requisitos)
+- [Como executar](#-como-executar)
+- [Observações](#-observações)
+- [Contribuindo](#-contribuindo)
+- [Licença](#-licença)
+- [Autor](#-autor)
 
-**Arquitetura:**
+## 📖 Sobre o projeto
 
-* A comunicação TCP é implementada utilizando a biblioteca `System.Net.Sockets`.
-* O servidor é multithread para lidar com múltiplos clientes simultaneamente.
-* O cliente é assíncrono para garantir uma interface responsiva.
+O projeto implementa um chat cliente-servidor baseado em sockets TCP, permitindo que múltiplos clientes se conectem simultaneamente a um servidor central para trocar mensagens de texto e compartilhar imagens em tempo real.
 
-**Requisitos:**
+## ✨ Funcionalidades
 
-* Visual Studio 2019 ou superior.
-* Framework .NET 4.7.2 ou superior.
+### Servidor
 
-**Instalação e Uso:**
+- Iniciar e parar a escuta por conexões de clientes.
+- Aceitar novas conexões de clientes.
+- Gerenciar clientes conectados (armazenar informações como nome, cor de exibição e socket).
+- Receber e processar mensagens de texto e arquivos de clientes, reenviando para os demais clientes conectados.
+- Enviar mensagens de texto para todos os clientes conectados (broadcast).
+- Compartilhar imagens: receber imagens de clientes e replicar para os outros clientes.
 
-1. Clone este repositório: 
+### Cliente
+
+- Conectar a um servidor TCP.
+- Enviar nome e cor de exibição.
+- Enviar mensagens de texto para o servidor.
+- Compartilhar imagens com o servidor.
+- Receber mensagens de texto do servidor.
+- Receber imagens do servidor e salvá-las em uma pasta local.
+- Desconectar do servidor.
+
+## 🏗 Arquitetura
+
+- A comunicação TCP é implementada utilizando a biblioteca `System.Net.Sockets`.
+- O **servidor** é multithread, permitindo lidar com múltiplos clientes simultaneamente.
+- O **cliente** é assíncrono, garantindo uma interface responsiva durante o envio e recebimento de dados.
+
+## 🛠 Tecnologias utilizadas
+
+- [C#](https://learn.microsoft.com/pt-br/dotnet/csharp/)
+- [.NET Framework](https://dotnet.microsoft.com/) 4.7.2 ou superior
+- `System.Net.Sockets` (comunicação TCP)
+
+## ✅ Pré-requisitos
+
+Antes de começar, você precisa ter instalado:
+
+- [Visual Studio 2019](https://visualstudio.microsoft.com/) ou superior
+- [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework) 4.7.2 ou superior
+
+## 🚀 Como executar
+
+1. Clone este repositório:
    ```bash
-   git clone https://github.com/eduardocastro-dev/APS_5SEM.git
+   git clone https://github.com/eduardocastro-dev/Bacharelado_APS_5SEM.git
    ```
-2. Abra a solução no Visual Studio.
-3. Compile o projeto do servidor e do cliente.
-4. Execute o servidor.
-5. Execute o cliente e configure as informações (nome, endereço IP do servidor e pasta para salvar imagens).
-6. Conecte-se ao servidor.
-7. Utilize as funcionalidades para enviar mensagens e compartilhar imagens.
+2. Abra a solução (`.sln`) no Visual Studio.
+3. Compile os projetos do servidor (`TCPServidor`) e do cliente (`TCPCliente`).
+4. Execute o projeto **TCPServidor** para iniciar a escuta por conexões.
+5. Execute o projeto **TCPCliente** e configure as informações necessárias:
+   - Nome de exibição
+   - Endereço IP e porta do servidor
+   - Pasta local para salvar as imagens recebidas
+6. Conecte-se ao servidor pela interface do cliente.
+7. Utilize o chat para enviar mensagens de texto e compartilhar imagens com os demais clientes conectados.
 
-**Observações:**
+> 💡 **Dica:** para testar com múltiplos clientes na mesma máquina, basta executar várias instâncias do projeto **TCPCliente** e conectá-las ao mesmo servidor.
 
-* O projeto inclui tratamento de erros para garantir a robustez das aplicações.
-* A documentação detalhada da implementação está disponível nos arquivos de código fonte.
-* Este projeto é um exemplo básico de um servidor e cliente TCP. Recursos adicionais, como segurança, autenticação e criptografia, podem ser implementados para atender a requisitos específicos.
+## 📝 Observações
 
-**Contribuições:**
+- O projeto inclui tratamento de erros para garantir a robustez das aplicações.
+- A documentação detalhada da implementação está disponível nos comentários dos arquivos de código-fonte.
+- Este é um projeto **acadêmico**, com fins didáticos sobre comunicação via sockets TCP. Recursos adicionais — como autenticação, criptografia do tráfego e validação mais robusta de entradas — podem ser implementados para atender a requisitos de produção.
 
-Contribuições para este projeto são bem-vindas! Por favor, abra um *issue* ou uma *pull request* para relatar bugs, sugestões ou melhorias.
+## 🤝 Contribuindo
 
-**Licença:**
+Contribuições para este projeto são bem-vindas! Sinta-se à vontade para:
+
+1. Fazer um fork do projeto
+2. Criar uma branch para sua feature (`git checkout -b feature/minha-feature`)
+3. Commitar suas alterações (`git commit -m 'Adiciona minha feature'`)
+4. Enviar um pull request
+
+Você também pode abrir uma [issue](https://github.com/eduardocastro-dev/Bacharelado_APS_5SEM/issues) para relatar bugs ou sugerir melhorias.
+
+## 📄 Licença
 
 Este projeto está licenciado sob a licença [MIT](LICENSE).
 
+## 👤 Autor
 
- 
+Desenvolvido por [**Eduardo Castro**](https://github.com/eduardocastro-dev) como parte das atividades do curso de Bacharelado.
